@@ -37,7 +37,7 @@ const router = createBrowserRouter([
 
   {
     path: "*",
-    element: <p>Error vaiya</p>,
+    element: <ErrorGlobal></ErrorGlobal>,
   },
 ]);
 export default router;

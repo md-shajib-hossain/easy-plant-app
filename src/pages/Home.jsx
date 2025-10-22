@@ -2,8 +2,6 @@ import React from "react";
 
 import ImageSlider from "../components/ImageSlider";
 import PlantCard from "../components/PlantCard";
-import { FaTree } from "react-icons/fa";
-import FeaturePlants from "../components/FeaturePlants";
 import AsideBar from "../components/AsideBar";
 
 const Home = () => {
