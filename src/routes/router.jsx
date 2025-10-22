@@ -4,6 +4,8 @@ import MainLayout from "../layout/MainLayout";
 import Plants from "../pages/Plants";
 import MyProfile from "../pages/MyProfile";
 import ErrorGlobal from "../Error/ErrorGlobal";
+import Registration from "../components/Registration";
+import LogIn from "../components/LogIn";
 
 const router = createBrowserRouter([
   {
@@ -15,18 +17,27 @@ const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: "/plants",
+        path: "/plants/:id",
         Component: Plants,
       },
       {
         path: "/myprofile",
         Component: MyProfile,
       },
+      {
+        path: "/registration",
+        Component: Registration,
+      },
+      {
+        path: "/login",
+        Component: LogIn,
+      },
     ],
   },
+
   {
     path: "*",
-    Component: ErrorGlobal,
+    element: <p>Error vaiya</p>,
   },
 ]);
 export default router;

@@ -2,11 +2,11 @@ import React from "react";
 
 const Experts = () => {
   return (
-    <div>
+    <div className="space-y-2 ">
       <h1 className="text-lg font-semibold py-2 mb-1 px-2 rounded-md bg-[#224229] text-white">
-        Meet Our Green Experts
+        Meet Our Experts
       </h1>
-      <div className="card bg-base-100 shadow-sm">
+      <div className="card bg-base-100 shadow-sm ">
         <figure>
           <img
             src="https://miro.medium.com/v2/resize:fit:1024/1*hfw3A-EAfFQyDQyVul-Eew.png"
@@ -16,7 +16,7 @@ const Experts = () => {
         <div className="card-body">
           <h2 className="card-title text-blue-800">Ashley Nussman-Berry</h2>
           <p>
-            <span className="font-semibold text-green-800 text-lg">
+            <span className="font-semibold text-green-800 text-md">
               Specialization:
             </span>{" "}
             Plant Identification & Health Assessment
@@ -34,7 +34,7 @@ const Experts = () => {
         <div className="card-body">
           <h2 className="card-title text-blue-800">Will Creed</h2>
           <p>
-            <span className="font-semibold text-green-800 text-lg">
+            <span className="font-semibold text-green-800 text-md">
               Specialization:
             </span>{" "}
             Indoor Plant Troubleshooting & Long-Term Maintenance
@@ -52,7 +52,7 @@ const Experts = () => {
         <div className="card-body">
           <h2 className="card-title text-blue-800">Mary Jane Duford</h2>
           <p>
-            <span className="font-semibold text-green-800 text-lg">
+            <span className="font-semibold text-green-800 text-md">
               Specialization:
             </span>{" "}
             Sustainable Gardening & Soil Management
@@ -69,7 +69,7 @@ const Experts = () => {
         <div className="card-body">
           <h2 className="card-title text-blue-800">Christopher Satch</h2>
           <p>
-            <span className="font-semibold text-green-800 text-lg">
+            <span className="font-semibold text-green-800 text-md">
               Specialization:
             </span>{" "}
             Urban Plant Styling & Pest Management

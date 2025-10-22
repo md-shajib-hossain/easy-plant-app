@@ -63,10 +63,21 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <div className="avatar">
-            <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
-              <img src="https://americanplantexchange.com/cdn/shop/products/peacelily-2.jpg?v=1672881763&width=1445" />
+          <div className="dropdown dropdown-hover">
+            <div tabIndex={0} role="button" className="w-12 h-12 m-1">
+              <img className="h-12 w-12 rounded-full" alt="User" />
             </div>
+            <ul
+              tabIndex="-1"
+              className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm text-black"
+            >
+              <li>
+                <NavLink to="login">Log In</NavLink>
+              </li>
+              <li>
+                <NavLink to="/registration">Register</NavLink>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

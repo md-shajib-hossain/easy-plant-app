@@ -14,7 +14,10 @@ const FeaturePlants = () => {
     <div className="grid grid-cols-3 gap-2">
       {/* image, name, price, rating, and “View Details” */}
       {allData.map((plant) => (
-        <div className="card h-[400px] bg-base-100 shadow-sm transform transition-transform duration-300 hover:scale-103">
+        <div
+          key={plant.plantId}
+          className="card h-[400px] bg-base-100 shadow-sm transform transition-transform duration-300 hover:scale-103"
+        >
           <figure>
             <img
               className="w-[300px] h-[300px]"
