@@ -3,7 +3,7 @@ import usePlantsData from "../hook/usePlantData";
 
 const PlantCard = () => {
   const { allData, loading, error } = usePlantsData();
-  console.log(allData);
+  // console.log(allData);
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -14,16 +14,21 @@ const PlantCard = () => {
 
   const uniqueCategories = [...new Set(allData.map((plant) => plant.category))];
   return (
-    <div className="flex items-center justify-around">
-      {uniqueCategories.map((category) => (
-        <div
-          key={category}
-          className="w-30 h-30 shadow-xl flex justify-center items-center text-center rounded-full px-3 py-2 bg-[#224229] mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105"
-        >
-          <h1 className="text-white text-lg">{category}</h1>
-        </div>
-      ))}
-    </div>
+    <section>
+      <h1 className="text-xl font-semibold py-2 mb-1 px-2 text-center rounded-md bg-[#224229] text-white">
+        Categories
+      </h1>
+      <div className="flex flex-col ">
+        {uniqueCategories.map((category) => (
+          <div
+            key={category}
+            className="border border-base-300 rounded-l-md px-3 py-2  mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105"
+          >
+            <h1 className=" text-lg">{category}</h1>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 };
 

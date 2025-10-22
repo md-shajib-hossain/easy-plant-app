@@ -1,0 +1,34 @@
+[
+  {
+    "category": "Flower",
+    "careTips": {
+      "watering": "Water 1-2 times per week, ensuring soil is moist but not waterlogged. Allow the top inch of soil to dry out between waterings.",
+      "sunlight": "Requires 6-8 hours of direct sunlight daily. Place near a south-facing window or in a sunny garden spot.",
+      "fertilizing": "Fertilize every 2-4 weeks during the growing season (spring and summer) with a balanced liquid fertilizer (e.g., 10-10-10)."
+    }
+  },
+  {
+    "category": "Succulent",
+    "careTips": {
+      "watering": "Water every 2-3 weeks, allowing soil to dry out completely between waterings. Overwatering can cause root rot.",
+      "sunlight": "Needs 4-6 hours of bright, indirect sunlight or some direct morning sun. Avoid intense afternoon sun.",
+      "fertilizing": "Fertilize once a month during spring and summer with a diluted cactus fertilizer (e.g., 5-10-10)."
+    }
+  },
+  {
+    "category": "Foliage",
+    "careTips": {
+      "watering": "Water when the top 1-2 inches of soil feel dry, typically every 7-10 days. Adjust based on humidity and season.",
+      "sunlight": "Prefers bright, indirect light. Can tolerate low light but may grow slower.",
+      "fertilizing": "Fertilize every 4-6 weeks during spring and summer with a nitrogen-rich fertilizer (e.g., 20-10-10)."
+    }
+  },
+  {
+    "category": "Herb",
+    "careTips": {
+      "watering": "Water when the soil feels dry to the touch, about 1-2 times per week. Ensure good drainage to prevent soggy roots.",
+      "sunlight": "Requires 6 hours of direct sunlight daily. A sunny windowsill or outdoor garden is ideal.",
+      "fertilizing": "Fertilize every 2-3 weeks during the growing season with an organic fertilizer or compost tea."
+    }
+  }
+]
