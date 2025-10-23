@@ -11,6 +11,7 @@ import AllPlants from "../pages/AllPlants";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import About from "../components/About";
 import Contact from "../components/Contact";
+import PrivacyPolicy from "../components/PrivacyPolicy";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: "contact",
     Component: Contact,
+  },
+  {
+    path: "privacy-policy",
+    Component: PrivacyPolicy,
   },
 
   {

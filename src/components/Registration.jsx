@@ -5,14 +5,11 @@ import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
 
-//
-//
-
 const Registration = () => {
   const { createUserWithEP, setUser, createUserWithGoogle, updateUser } =
     use(AuthContext);
   const [showPass, setShowPass] = useState(false);
-  // console.log(createUserWithGoogle);
+
   const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
@@ -20,7 +17,6 @@ const Registration = () => {
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
-    console.log(name, email, password, photo);
 
     const passRegEx = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
     if (password)
@@ -36,7 +32,7 @@ const Registration = () => {
     createUserWithEP(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+
         updateUser({
           displayName: name,
           photoURL: photo,
@@ -46,7 +42,7 @@ const Registration = () => {
           })
           .catch((error) => {
             toast(error.message);
-            console.log(error.message);
+
             setUser(user);
           });
         toast.success("Registered Successful");
@@ -57,7 +53,7 @@ const Registration = () => {
   //
   const handleGoogleSignIn = (e) => {
     e.preventDefault();
-    console.log("google btn clicked");
+
     createUserWithGoogle()
       .then((res) => {
         setUser(res.user);
@@ -65,7 +61,6 @@ const Registration = () => {
         toast.success("Sign In Successfully");
       })
       .catch((error) => {
-        console.log(error);
         toast.error(error.meesage);
       });
   };

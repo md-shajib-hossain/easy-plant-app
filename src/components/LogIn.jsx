@@ -6,14 +6,16 @@ import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
 const LogIn = () => {
+  const [showPass, setShowPass] = useState(false);
   const emailRef = useRef();
   const { loginWithEP, setUser, createUserWithGoogle } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  // console.log(loginWithEP);
 
   // log in func
   //
@@ -21,17 +23,21 @@ const LogIn = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-
+    const passRegEx = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if (password)
+      if (!passRegEx.test(password)) {
+        toast.error(
+          "Password must be at least 6 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character"
+        );
+        return;
+      }
     loginWithEP(email, password)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
         toast.success("Log In Successfully");
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log({ errorCode, errorMessage });
 
         toast.error(errorMessage);
       });
@@ -50,15 +56,13 @@ const LogIn = () => {
         toast.error(errorMessage);
         // ..
       });
-
-    console.log("forget link clicked", email);
   };
 
   //google sign in func
   //
   const handleGoogleSignIn = (e) => {
     e.preventDefault();
-    console.log("google btn clicked");
+
     createUserWithGoogle()
       .then((res) => {
         setUser(res.user);
@@ -66,7 +70,6 @@ const LogIn = () => {
         toast.success("Sign In Successfully");
       })
       .catch((error) => {
-        console.log(error);
         toast.error(error.meesage);
       });
   };
@@ -85,13 +88,23 @@ const LogIn = () => {
                 className="input"
                 placeholder="Email"
               />
-              <label className="label">Password</label>
-              <input
-                name="password"
-                type="password"
-                className="input"
-                placeholder="Password"
-              />
+              <div className="relative">
+                <label className="label">Password</label>
+
+                <input
+                  name="password"
+                  type={showPass ? "text" : "password"}
+                  className="input"
+                  placeholder="Password"
+                  required
+                />
+                <span
+                  onClick={() => setShowPass(!showPass)}
+                  className="absolute right-[25px] top-[30px] cursor-pointer z-50"
+                >
+                  {showPass ? <Eye size={20} /> : <EyeOff size={20} />}
+                </span>
+              </div>
               <p
                 onClick={handleForgetPass}
                 className="text-blue-700 text-md font-semibold cursor-pointer hover:underline"

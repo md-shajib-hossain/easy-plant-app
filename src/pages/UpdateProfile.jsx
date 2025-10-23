@@ -5,17 +5,16 @@ import admin from "../assets/admin.jpg";
 import Loader from "../components/Loader";
 const UpdateProfile = () => {
   const { user, setUser, updateUser, setLoading, loading } = use(AuthContext);
-  console.log(user);
+
   if (loading) {
     return <Loader></Loader>;
   }
   const reUpdateUser = (e) => {
     e.preventDefault();
-    console.log(e.target);
+
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     const email = e.target.email.value;
-    console.log(name, email, photo);
 
     if (user.email === email) {
       updateUser({
@@ -29,7 +28,7 @@ const UpdateProfile = () => {
         })
         .catch((error) => {
           toast(error.message);
-          console.log(error.message);
+
           setUser(user);
         });
     } else {
