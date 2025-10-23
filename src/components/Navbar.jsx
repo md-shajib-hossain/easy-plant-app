@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate } from "react-router";
 import logo from "../assets/plant-logo.png";
 import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
-import { FaSmile } from "react-icons/fa"; // ধরে নিচ্ছি Smile একটি আইকন
+import { FaSmile } from "react-icons/fa";
 import { Frown, Smile } from "lucide-react";
 
 const Navbar = () => {
@@ -51,7 +51,7 @@ const Navbar = () => {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/plants">Plants</NavLink>
+                <NavLink to="/plantsdetails">Plants</NavLink>
               </li>
               <li>
                 <NavLink to="/myprofile">My Profile</NavLink>

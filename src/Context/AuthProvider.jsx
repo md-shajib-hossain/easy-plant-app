@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUser,
   };
-  console.log(user);
+
   return <AuthContext value={authInfo}>{children} </AuthContext>;
 };
 

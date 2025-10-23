@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import usePlantsData from "../hook/usePlantData";
+import { Link } from "react-router";
 
 const PlantSection = () => {
   const { allData, loading, error } = usePlantsData();
+
   const [selectedPlant, setSelectedPlant] = useState(null);
 
   if (loading) {
@@ -62,14 +64,16 @@ const PlantSection = () => {
                   {plant.plantName}
                   <div className="badge badge-primary">{plant.rating}</div>
                 </h2>
-                <p className="text-sm ">{plant.description}</p>
+                <p className="line-clamp-3 text-sm">{plant.description} </p>
                 <div className="card-actions justify-between">
                   <div className="btn btn-outline btn-primary text-md font-semibold">
                     ${plant.price}
                   </div>
-                  <div className="btn btn-soft btn-success text-md font-semibold">
-                    View Details
-                  </div>
+                  <Link to={`/plantsdetails/${plant.plantId}`}>
+                    <div className="btn btn-soft btn-success text-md font-semibold">
+                      View Details
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
