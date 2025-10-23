@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <section className="w-full bg-[#224229]">
+    <section className="w-full bg-[#224229] ">
       <div className="navbar shadow-sm text-white w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -51,7 +51,7 @@ const Navbar = () => {
                 <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/plantsdetails">Plants</NavLink>
+                <NavLink to="/allplants">Plants</NavLink>
               </li>
               <li>
                 <NavLink to="/myprofile">My Profile</NavLink>
@@ -77,7 +77,7 @@ const Navbar = () => {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/plants">Plants</NavLink>
+              <NavLink to="/allplants">Plants</NavLink>
             </li>
             <li>
               <NavLink to="/myprofile">My Profile</NavLink>
@@ -110,7 +110,9 @@ const Navbar = () => {
                 className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-sm text-black"
               >
                 <li>
-                  <span>{user.displayName || user.email || "User"}</span>
+                  <Link to="/myprofile">
+                    <span>{user.displayName || user.email || "User"}</span>
+                  </Link>
                   <button onClick={handleLogOut} className="text-red-600">
                     Log Out
                   </button>

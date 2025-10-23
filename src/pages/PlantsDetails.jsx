@@ -1,23 +1,30 @@
-import React, { useState } from "react";
 import { useParams } from "react-router";
 import usePlantsData from "../hook/usePlantData";
 import { toast } from "react-toastify";
+
+import { use } from "react";
+import { AuthContext } from "../Context/AuthContext";
+import Loader from "../components/Loader";
+import ErrorGlobal from "../Error/ErrorGlobal";
 
 const PlantsDetails = () => {
   const { id } = useParams();
   const { allData } = usePlantsData();
   const selectedPlant = allData.find((plant) => plant.plantId == id);
-
+  const { loading } = use(AuthContext);
   const handleBookNow = (e) => {
     e.preventDefault();
     toast.success("Booking Successful");
     e.target.reset();
   };
 
+  if (loading) {
+    return <Loader></Loader>;
+  }
   if (!selectedPlant) {
     return (
-      <div className="w-11/12 mx-auto h-[300px]">
-        <h1>PLant Not Found</h1>
+      <div>
+        <ErrorGlobal></ErrorGlobal>
       </div>
     );
   }

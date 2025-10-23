@@ -1,14 +1,18 @@
-import React, { useContext } from "react";
-import { Link, useNavigate } from "react-router";
+import React, { useContext, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 
 import { AuthContext } from "../Context/AuthContext";
 
 import { toast } from "react-toastify";
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../Firebase/firebase.config";
 
 const LogIn = () => {
+  const emailRef = useRef();
   const { loginWithEP, setUser, createUserWithGoogle } =
     useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   // console.log(loginWithEP);
 
   // log in func
@@ -18,17 +22,36 @@ const LogIn = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log({ email, password });
     loginWithEP(email, password)
       .then((res) => {
         console.log(res.user);
         toast.success("Log In Successfully");
-        navigate("/");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
-        console.log(error);
-        toast.error(error.meesage);
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log({ errorCode, errorMessage });
+
+        toast.error(errorMessage);
       });
+  };
+  //
+  const handleForgetPass = () => {
+    const email = emailRef.current.value;
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        toast.success("Password reset email sent!");
+        // ..
+      })
+      .catch((error) => {
+        //
+        const errorMessage = error.message;
+        toast.error(errorMessage);
+        // ..
+      });
+
+    console.log("forget link clicked", email);
   };
 
   //google sign in func
@@ -39,7 +62,7 @@ const LogIn = () => {
     createUserWithGoogle()
       .then((res) => {
         setUser(res.user);
-        navigate("/");
+        navigate(`${location.state ? location.state : "/"}`);
         toast.success("Sign In Successfully");
       })
       .catch((error) => {
@@ -56,6 +79,7 @@ const LogIn = () => {
             <form onSubmit={handleLogIn} className="fieldset">
               <label className="label">Email</label>
               <input
+                ref={emailRef}
                 name="email"
                 type="email"
                 className="input"
@@ -68,7 +92,10 @@ const LogIn = () => {
                 className="input"
                 placeholder="Password"
               />
-              <p className="text-blue-700 text-md font-semibold cursor-pointer hover:underline">
+              <p
+                onClick={handleForgetPass}
+                className="text-blue-700 text-md font-semibold cursor-pointer hover:underline"
+              >
                 Forget Password?
               </p>
               <button type="submit" className="btn btn-neutral mt-4">

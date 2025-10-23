@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import usePlantsData from "../hook/usePlantData";
 import { Link } from "react-router";
 
-const PlantSection = () => {
+const PlantCard = () => {
   const { allData, loading, error } = usePlantsData();
 
   const [selectedPlant, setSelectedPlant] = useState(null);
@@ -84,4 +84,4 @@ const PlantSection = () => {
   );
 };
 
-export default PlantSection;
+export default PlantCard;

@@ -93,7 +93,6 @@ const Registration = () => {
                 type="text"
                 className="input"
                 placeholder="Photo-URL"
-                required
               />
               <label className="label">Email</label>
               <input

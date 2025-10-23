@@ -1,10 +1,14 @@
 import React, { use } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
-
+import admin from "../assets/admin.jpg";
+import Loader from "../components/Loader";
 const UpdateProfile = () => {
-  const { user, setUser, updateUser } = use(AuthContext);
+  const { user, setUser, updateUser, setLoading, loading } = use(AuthContext);
   console.log(user);
+  if (loading) {
+    return <Loader></Loader>;
+  }
   const reUpdateUser = (e) => {
     e.preventDefault();
     console.log(e.target);
@@ -12,6 +16,7 @@ const UpdateProfile = () => {
     const photo = e.target.photo.value;
     const email = e.target.email.value;
     console.log(name, email, photo);
+
     if (user.email === email) {
       updateUser({
         displayName: name,
@@ -20,6 +25,7 @@ const UpdateProfile = () => {
         .then(() => {
           toast.success("Profile Updated Successfully");
           setUser({ ...user, displayName: name, photoURL: photo });
+          setLoading(false);
         })
         .catch((error) => {
           toast(error.message);
@@ -33,7 +39,18 @@ const UpdateProfile = () => {
   return (
     <div className="hero bg-base-300 h-50%  w-12/12 mx-auto py-10">
       <div className="hero-content flex-col gap-[200px] lg:flex-row-reverse">
-        <img src={user.photoURL} className="w-3xs rounded-lg  shadow-2xl" />
+        {user && user.photoURL ? (
+          <img
+            src={user.photoURL}
+            className="max-w-[240px] h-[250px]  rounded-lg shadow-2xl"
+          />
+        ) : (
+          <img
+            className="max-w-[240px] h-[250px]  rounded-lg shadow-2xl"
+            src={admin}
+            alt="admin"
+          />
+        )}
 
         {/* form will be here */}
         <div className="rounded-lg w-[400px] h-full p-5 bg-white">

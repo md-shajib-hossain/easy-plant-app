@@ -7,6 +7,10 @@ import Registration from "../components/Registration";
 import LogIn from "../components/LogIn";
 import UpdateProfile from "../pages/UpdateProfile";
 import PlantsDetails from "../pages/PlantsDetails";
+import AllPlants from "../pages/AllPlants";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import About from "../components/About";
+import Contact from "../components/Contact";
 
 const router = createBrowserRouter([
   {
@@ -36,9 +40,25 @@ const router = createBrowserRouter([
       },
       {
         path: "/plantsdetails/:id",
-        Component: PlantsDetails,
+        element: (
+          <PrivateRoute>
+            <PlantsDetails></PlantsDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/allplants",
+        Component: AllPlants,
       },
     ],
+  },
+  {
+    path: "about",
+    Component: About,
+  },
+  {
+    path: "contact",
+    Component: Contact,
   },
 
   {

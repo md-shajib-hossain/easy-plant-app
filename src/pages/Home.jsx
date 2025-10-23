@@ -1,10 +1,16 @@
-import React from "react";
+import React, { use } from "react";
 
 import ImageSlider from "../components/ImageSlider";
 import PlantCard from "../components/PlantCard";
 import AsideBar from "../components/AsideBar";
+import { AuthContext } from "../Context/AuthContext";
+import Loader from "../components/Loader";
 
 const Home = () => {
+  const { loading } = use(AuthContext);
+  if (loading) {
+    return <Loader></Loader>;
+  }
   return (
     <div className="w-11/12 mx-auto min-h-screen py-2">
       <ImageSlider></ImageSlider>
