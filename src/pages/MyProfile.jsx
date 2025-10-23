@@ -8,11 +8,14 @@ const MyProfile = () => {
       {user ? (
         <div className="hero bg-base-200 max-h-[600px]mt-10">
           <div className="hero-content flex-col lg:flex-row">
-            <img
-              cls
-              src={user.photoURL}
-              className="max-w-[240px] h-[250px]  rounded-lg shadow-2xl"
-            />
+            {user ? (
+              <img
+                src={user.photoURL}
+                className="max-w-[240px] h-[250px]  rounded-lg shadow-2xl"
+              />
+            ) : (
+              <p>No Image Found</p>
+            )}
             <div>
               <h1 className="text-xl font-semibold ">Hi ! This is_</h1>
               <h1 className="text-4xl font-extrabold bg-gradient-to-r from-[#0c4eb9] via-[#DC1FFF] to-[#00BFFF] bg-clip-text text-transparent">

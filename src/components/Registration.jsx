@@ -1,5 +1,5 @@
 import React, { use, useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
@@ -9,10 +9,10 @@ import { Eye, EyeOff } from "lucide-react";
 //
 
 const Registration = () => {
-  const { createUserWithEP } = use(AuthContext);
+  const { createUserWithEP, setUser, createUserWithGoogle } = use(AuthContext);
   const [showPass, setShowPass] = useState(false);
   // console.log(createUserWithGoogle);
-
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -29,15 +29,32 @@ const Registration = () => {
         return;
       }
     // create user with email and pass
+    //
+    //
     createUserWithEP(email, password)
       .then((result) => {
         console.log(result);
-        // setUser(result.user);
+        setUser(result.user);
         toast.success("Registered Successful");
       })
       .catch((error) => console.log(error));
   };
-
+  //
+  const handleGoogleSignIn = (e) => {
+    e.preventDefault();
+    console.log("google btn clicked");
+    createUserWithGoogle()
+      .then((res) => {
+        setUser(res.user);
+        navigate("/");
+        toast.success("Sign In Successfully");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.meesage);
+      });
+  };
+  //
   return (
     <div>
       <div className="hero  min-h-screen bg-[#224230c0]">
@@ -91,13 +108,48 @@ const Registration = () => {
               </div>
 
               <button className="btn btn-neutral mt-4">Register</button>
+              {/* google btn */}
+              <button
+                type="button"
+                onClick={handleGoogleSignIn}
+                className="btn mt-2 hover:bg-blue-50 bg-white text-black border-[#e5e5e5]"
+              >
+                <svg
+                  aria-label="Google logo"
+                  width="16"
+                  height="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                >
+                  <g>
+                    <path d="m0 0H512V512H0" fill="#fff"></path>
+                    <path
+                      fill="#34a853"
+                      d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
+                    ></path>
+                    <path
+                      fill="#4285f4"
+                      d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
+                    ></path>
+                    <path
+                      fill="#fbbc02"
+                      d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
+                    ></path>
+                    <path
+                      fill="#ea4335"
+                      d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
+                    ></path>
+                  </g>
+                </svg>
+                Sign In with Google
+              </button>
             </form>
             <div>
               <p className=" ">
                 Already have an account?{" "}
                 <Link
                   to="/login"
-                  className="text-blue-700 font-semibold underline"
+                  className="text-blue-700 font-semibold hover:underline"
                 >
                   Login
                 </Link>
