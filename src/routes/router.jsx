@@ -6,6 +6,7 @@ import MyProfile from "../pages/MyProfile";
 import ErrorGlobal from "../Error/ErrorGlobal";
 import Registration from "../components/Registration";
 import LogIn from "../components/LogIn";
+import UpdateProfile from "../pages/UpdateProfile";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         Component: LogIn,
+      },
+      {
+        path: "/updateprofile",
+        element: <UpdateProfile></UpdateProfile>,
       },
     ],
   },

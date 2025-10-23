@@ -1,8 +1,10 @@
 import React, { use } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import { Link } from "react-router";
 
 const MyProfile = () => {
   const { user } = use(AuthContext);
+
   return (
     <div className="w-11/12 mx-auto">
       {user ? (
@@ -30,7 +32,9 @@ const MyProfile = () => {
                 professional web developer into reality.
               </p>
               <p className="pb-3 font-semibold">My Email:{user.email}</p>
-              <button className="btn btn-primary">Update Profile</button>
+              <Link to="/updateprofile">
+                <button className="btn btn-primary">Update Profile</button>
+              </Link>
             </div>
           </div>
         </div>

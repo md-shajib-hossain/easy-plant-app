@@ -9,7 +9,8 @@ import { Eye, EyeOff } from "lucide-react";
 //
 
 const Registration = () => {
-  const { createUserWithEP, setUser, createUserWithGoogle } = use(AuthContext);
+  const { createUserWithEP, setUser, createUserWithGoogle, updateUser } =
+    use(AuthContext);
   const [showPass, setShowPass] = useState(false);
   // console.log(createUserWithGoogle);
   const navigate = useNavigate();
@@ -17,8 +18,9 @@ const Registration = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const name = e.target.name.value;
+    const photo = e.target.photo.value;
     const password = e.target.password.value;
-    console.log(name, email, password);
+    console.log(name, email, password, photo);
 
     const passRegEx = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
     if (password)
@@ -33,9 +35,22 @@ const Registration = () => {
     //
     createUserWithEP(email, password)
       .then((result) => {
-        console.log(result);
-        setUser(result.user);
+        const user = result.user;
+        console.log(user);
+        updateUser({
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photo });
+          })
+          .catch((error) => {
+            toast(error.message);
+            console.log(error.message);
+            setUser(user);
+          });
         toast.success("Registered Successful");
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
@@ -74,7 +89,7 @@ const Registration = () => {
               />
               <label className="label">Photo-URL</label>
               <input
-                name="photourl"
+                name="photo"
                 type="text"
                 className="input"
                 placeholder="Photo-URL"

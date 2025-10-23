@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router";
 
 import { AuthContext } from "../Context/AuthContext";
-import { auth } from "../Firebase/firebase.config";
+
 import { toast } from "react-toastify";
 
 const LogIn = () => {
@@ -12,11 +12,14 @@ const LogIn = () => {
   // console.log(loginWithEP);
 
   // log in func
+  //
   const handleLogIn = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    loginWithEP(auth, email, password)
+
+    console.log({ email, password });
+    loginWithEP(email, password)
       .then((res) => {
         console.log(res.user);
         toast.success("Log In Successfully");
@@ -28,6 +31,7 @@ const LogIn = () => {
       });
   };
 
+  //google sign in func
   //
   const handleGoogleSignIn = (e) => {
     e.preventDefault();
@@ -67,7 +71,9 @@ const LogIn = () => {
               <p className="text-blue-700 text-md font-semibold cursor-pointer hover:underline">
                 Forget Password?
               </p>
-              <button className="btn btn-neutral mt-4">Log In</button>
+              <button type="submit" className="btn btn-neutral mt-4">
+                Log In
+              </button>
               <button
                 type="button"
                 onClick={handleGoogleSignIn}
