@@ -9,7 +9,7 @@ const LogIn = () => {
   const [showPass, setShowPass] = useState(false);
   const [checkPass, setCheckPass] = useState("");
   const emailRef = useRef();
-  const { loginWithEP, setUser, createUserWithGoogle } =
+  const { loginWithEP, setUser, setLoading, createUserWithGoogle } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,6 +33,7 @@ const LogIn = () => {
       .then(() => {
         toast.success("Log In Successfully");
         navigate(`${location.state ? location.state : "/"}`);
+        setLoading(false);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -52,6 +53,7 @@ const LogIn = () => {
         setUser(res.user);
         navigate(`${location.state ? location.state : "/"}`);
         toast.success("Sign In Successfully");
+        setLoading(false);
       })
       .catch((error) => {
         toast.error(error.meesage);

@@ -9,7 +9,7 @@ const Registration = () => {
   const [checkPass, setCeckPass] = useState("");
   const {
     createUserWithEP,
-    setloading,
+    setLoading,
     setUser,
     createUserWithGoogle,
     updateUser,
@@ -39,6 +39,7 @@ const Registration = () => {
     createUserWithEP(email, password)
       .then((result) => {
         const user = result.user;
+        setLoading(false);
 
         updateUser({
           displayName: name,
@@ -78,7 +79,6 @@ const Registration = () => {
           toast.error(e.message || "An unexpected error occurred.");
         }
       });
-    setloading(false);
   };
   //
   const handleGoogleSignIn = (e) => {
@@ -88,6 +88,7 @@ const Registration = () => {
         setUser(res.user);
         navigate(`${location.state ? location.state : "/"}`);
         toast.success("Sign In Successfully");
+        setLoading(false);
       })
       .catch((error) => {
         toast.error(error.meesage);

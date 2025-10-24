@@ -19,12 +19,12 @@ const PlantCard = () => {
     ? allData.filter((plant) => plant.category === selectedPlant)
     : allData;
   return (
-    <section className="container h-full mx-auto grid grid-cols-1 md:grid-cols-9 gap-2">
-      <div className="mb-8 col-span-2">
+    <section className="h-full mx-auto grid grid-cols-1 md:grid-cols-9 md:gap-2">
+      <div className="mb-8 col-span-1 md:col-span-2  w-full mx-auto">
         <h1 className="text-xl font-semibold py-2 mb-4 text-center rounded-l-md bg-[#224229] text-white">
           Top Categories
         </h1>
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           {uniqueCategories.map((category) => (
             <div
               key={category}

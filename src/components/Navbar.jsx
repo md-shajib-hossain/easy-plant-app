@@ -44,7 +44,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-black"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 md:w-52 p-2 shadow text-black"
             >
               <li>
                 <NavLink to="/">Home</NavLink>
@@ -83,9 +83,9 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end dropdown dropdown-bottom dropdown-end">
           {user ? (
-            <div className="dropdown dropdown-hover">
+            <div className="">
               <div
                 tabIndex={0}
                 role="button"
@@ -105,7 +105,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex="-1"
-                className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow-sm text-black"
+                className="dropdown-content menu bg-base-100 rounded-box z-[10] md:w-52 p-2 shadow-sm text-black"
               >
                 <li>
                   <Link to="/myprofile">

@@ -26,7 +26,7 @@ const ResetPassword = () => {
     <div className=" mx-auto flex items-center justify-center min-h-[500px] bg-[#224230c0]">
       <form
         onSubmit={handleForgetPass}
-        className="fieldset w-4/12 rounded-lg p-5 mx-auto bg-white"
+        className="fieldset w-10/12 md:w-4/12 rounded-lg p-5 mx-auto bg-white"
       >
         <h1 className="text-2xl font-bold text-center">Reset Password</h1>
 

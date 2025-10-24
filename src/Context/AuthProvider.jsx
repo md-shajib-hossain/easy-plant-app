@@ -20,7 +20,6 @@ const AuthProvider = ({ children }) => {
 
   // Create account with Email and Passwor
   const createUserWithEP = (email, password) => {
-    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   // Create account with Google
@@ -31,20 +30,20 @@ const AuthProvider = ({ children }) => {
 
   // update profile func
   const updateUser = (updatedData) => {
-    setLoading(true);
+    // setLoading(true);
     return updateProfile(auth.currentUser, updatedData);
   };
 
   //   log in existing account
 
   const loginWithEP = (email, password) => {
-    setLoading(true);
+    // setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   //   log out
   const logOut = () => {
-    setLoading(true);
+    // setLoading(true);
     return signOut(auth);
   };
   // on Auth State Changed Observer
