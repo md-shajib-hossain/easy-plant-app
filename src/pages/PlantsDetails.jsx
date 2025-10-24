@@ -32,18 +32,18 @@ const PlantsDetails = () => {
     <div className="card w-11/12 mx-auto my-5 flex gap-5 justify-between lg:card-side bg-base-100 shadow-sm">
       <figure>
         <img
-          className="w-[5oopx] h-full "
+          className="md:w-[5oopx] md:h-[500px] "
           src={selectedPlant.image}
           alt="Album"
         />
       </figure>
       <div className="card-body ">
-        <h2 className="text-4xl font-extrabold bg-gradient-to-r from-[#0c4eb9] via-[#DC1FFF] to-[#00BFFF] bg-clip-text text-transparent">
+        <h2 className="text-4xl font-extrabold bg-linear-to-r from-[#0c4eb9] via-[#DC1FFF] to-[#00BFFF] bg-clip-text text-transparent">
           {selectedPlant.plantName}
         </h2>
         <p className="  max-w-[800px]">{selectedPlant.description}</p>
         <div className="card-actions flex flex-col ">
-          <div className="flex items-center gap-4 py-3">
+          <div className="flex md:flex-row flex-col items-center gap-4 py-3">
             <p className="btn btn-primary py-2 px-3 text-lg">
               Price:${selectedPlant.price}
             </p>
@@ -54,13 +54,14 @@ const PlantsDetails = () => {
               In Stock: {selectedPlant.availableStock}
             </p>
           </div>
-          <form onSubmit={handleBookNow} className="fieldset w-1/2 ">
+          <form onSubmit={handleBookNow} className="fieldset w-[90%] md:w-1/2 ">
             <label className="label">Email</label>
             <input
               name="email"
               type="email"
               className="input w-full"
               placeholder="Email"
+              required
             />
             <label className="label">Password</label>
             <input
@@ -68,6 +69,7 @@ const PlantsDetails = () => {
               type="password"
               className="input w-full"
               placeholder="Password"
+              required
             />
 
             <button type="submit" className="btn btn-neutral mt-4">

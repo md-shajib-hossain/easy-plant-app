@@ -6,8 +6,14 @@ import { toast } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
 
 const Registration = () => {
-  const { createUserWithEP, setUser, createUserWithGoogle, updateUser } =
-    use(AuthContext);
+  const [checkPass, setCeckPass] = useState("");
+  const {
+    createUserWithEP,
+    setloading,
+    setUser,
+    createUserWithGoogle,
+    updateUser,
+  } = use(AuthContext);
   const [showPass, setShowPass] = useState(false);
 
   const navigate = useNavigate();
@@ -17,7 +23,8 @@ const Registration = () => {
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
-
+    setCeckPass(password);
+    console.log(checkPass);
     const passRegEx = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
     if (password)
       if (!passRegEx.test(password)) {
@@ -48,16 +55,38 @@ const Registration = () => {
         toast.success("Registered Successful");
         navigate("/");
       })
-      .catch((error) => console.log(error));
+      .catch((e) => {
+        if (e.code === "auth/email-already-in-use") {
+          toast.error("User already exists in the database!");
+        } else if (e.code === "auth/weak-password") {
+          toast.error("Password must contain 6 characters");
+        } else if (e.code === "auth/invalid-email") {
+          toast.error("Invalid email format. Please check your email.");
+        } else if (e.code === "auth/user-not-found") {
+          toast.error("User not found. Please sign up first.");
+        } else if (e.code === "auth/wrong-password") {
+          toast.error("Wrong password. Please try again.");
+        } else if (e.code === "auth/user-disabled") {
+          toast.error("This user account has been disabled.");
+        } else if (e.code === "auth/too-many-requests") {
+          toast.error("Too many attempts. Please try again later.");
+        } else if (e.code === "auth/operation-not-allowed") {
+          toast.error("Operation not allowed. Please contact support.");
+        } else if (e.code === "auth/network-request-failed") {
+          toast.error("Network error. Please check your connection.");
+        } else {
+          toast.error(e.message || "An unexpected error occurred.");
+        }
+      });
+    setloading(false);
   };
   //
   const handleGoogleSignIn = (e) => {
     e.preventDefault();
-
     createUserWithGoogle()
       .then((res) => {
         setUser(res.user);
-        navigate("/");
+        navigate(`${location.state ? location.state : "/"}`);
         toast.success("Sign In Successfully");
       })
       .catch((error) => {
@@ -88,6 +117,7 @@ const Registration = () => {
                 type="text"
                 className="input"
                 placeholder="Photo-URL"
+                required
               />
               <label className="label">Email</label>
               <input
@@ -114,6 +144,15 @@ const Registration = () => {
                 >
                   {showPass ? <Eye size={20} /> : <EyeOff size={20} />}
                 </span>
+              </div>
+              <div>
+                {checkPass?.length > 0 && checkPass?.length < 6 && (
+                  <p className="text-red-500 text-sm mt-2">
+                    Password must be at least 6 characters long and include at
+                    least one uppercase letter, one lowercase letter, one
+                    number, and one special character
+                  </p>
+                )}
               </div>
 
               <button className="btn btn-neutral mt-4">Register</button>

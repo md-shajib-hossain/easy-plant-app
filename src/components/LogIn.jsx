@@ -1,16 +1,13 @@
 import React, { useContext, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-
 import { AuthContext } from "../Context/AuthContext";
-
 import { toast } from "react-toastify";
-import { sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../Firebase/firebase.config";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
 const LogIn = () => {
   const [showPass, setShowPass] = useState(false);
+  const [checkPass, setCheckPass] = useState("");
   const emailRef = useRef();
   const { loginWithEP, setUser, createUserWithGoogle } =
     useContext(AuthContext);
@@ -23,6 +20,7 @@ const LogIn = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
+    setCheckPass(password);
     const passRegEx = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
     if (password)
       if (!passRegEx.test(password)) {
@@ -43,20 +41,6 @@ const LogIn = () => {
       });
   };
   //
-  const handleForgetPass = () => {
-    const email = emailRef.current.value;
-    sendPasswordResetEmail(auth, email)
-      .then(() => {
-        toast.success("Password reset email sent!");
-        // ..
-      })
-      .catch((error) => {
-        //
-        const errorMessage = error.message;
-        toast.error(errorMessage);
-        // ..
-      });
-  };
 
   //google sign in func
   //
@@ -105,12 +89,23 @@ const LogIn = () => {
                   {showPass ? <Eye size={20} /> : <EyeOff size={20} />}
                 </span>
               </div>
-              <p
-                onClick={handleForgetPass}
-                className="text-blue-700 text-md font-semibold cursor-pointer hover:underline"
-              >
-                Forget Password?
-              </p>
+              {/* pass error sec */}
+              <div>
+                {checkPass?.length > 0 && checkPass?.length < 6 && (
+                  <p className="text-red-500 text-sm mt-2">
+                    Password must be at least 6 characters long and include at
+                    least one uppercase letter, one lowercase letter, one
+                    number, and one special character
+                  </p>
+                )}
+              </div>
+              {/* pass error end */}
+              <Link to="resetpassword">
+                {" "}
+                <p className="text-blue-700 text-md font-semibold cursor-pointer hover:underline">
+                  Forget Password?
+                </p>
+              </Link>
               <button type="submit" className="btn btn-neutral mt-4">
                 Log In
               </button>

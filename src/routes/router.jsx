@@ -12,6 +12,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import About from "../components/About";
 import Contact from "../components/Contact";
 import PrivacyPolicy from "../components/PrivacyPolicy";
+import ResetPassword from "../pages/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,11 @@ const router = createBrowserRouter([
         Component: LogIn,
       },
       {
+        path: "/login/resetpassword",
+        Component: ResetPassword,
+      },
+
+      {
         path: "/updateprofile",
         element: <UpdateProfile></UpdateProfile>,
       },
@@ -51,19 +57,19 @@ const router = createBrowserRouter([
         path: "/allplants",
         Component: AllPlants,
       },
+      {
+        path: "about",
+        Component: About,
+      },
+      {
+        path: "contact",
+        Component: Contact,
+      },
+      {
+        path: "privacy-policy",
+        Component: PrivacyPolicy,
+      },
     ],
-  },
-  {
-    path: "about",
-    Component: About,
-  },
-  {
-    path: "contact",
-    Component: Contact,
-  },
-  {
-    path: "privacy-policy",
-    Component: PrivacyPolicy,
   },
 
   {

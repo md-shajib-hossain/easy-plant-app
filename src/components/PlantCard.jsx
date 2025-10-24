@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import usePlantsData from "../hook/usePlantData";
 import { Link } from "react-router";
+import PLantOfWeek from "./PLantOfWeek";
 
 const PlantCard = () => {
   const { allData, loading, error } = usePlantsData();
@@ -18,7 +19,7 @@ const PlantCard = () => {
     ? allData.filter((plant) => plant.category === selectedPlant)
     : allData;
   return (
-    <section className="container h-full mx-auto grid grid-cols-9 gap-2">
+    <section className="container h-full mx-auto grid grid-cols-1 md:grid-cols-9 gap-2">
       <div className="mb-8 col-span-2">
         <h1 className="text-xl font-semibold py-2 mb-4 text-center rounded-l-md bg-[#224229] text-white">
           Top Categories
@@ -43,10 +44,16 @@ const PlantCard = () => {
           >
             <h1 className="text-lg">All Plants</h1>
           </div>
+
+          {/* Plant of week */}
+          <div>
+            <PLantOfWeek></PLantOfWeek>
+          </div>
         </div>
       </div>
+
       <section className="col-span-7  ">
-        <div className="gap-2 grid grid-cols-3 2">
+        <div className="gap-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {filteredPlants.map((plant) => (
             <div
               key={plant.plantId}

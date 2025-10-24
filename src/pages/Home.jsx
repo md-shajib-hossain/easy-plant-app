@@ -17,8 +17,8 @@ const Home = () => {
       <h1 className="text-xl font-semibold pt-10 pb-2 mb-10 px-2 text-center">
         Top Rated Indoor Plants
       </h1>
-      <main className="grid grid-cols-12 gap-2">
-        <div className=" category col-span-10 ">
+      <main className="grid grid-cols-1  md:grid-cols-12 gap-2">
+        <div className=" category md:col-span-10 ">
           <PlantCard></PlantCard>
         </div>
         <div className=" col-span-2">

@@ -16,7 +16,7 @@ const Navbar = () => {
         toast.success("Logged out successfully!");
         navigate("/");
       })
-      .catch((error) => {
+      .catch(() => {
         toast.error("Failed to log out");
       });
   };
@@ -58,7 +58,7 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to="/">
-            <div className="flex items-center gap-1 text-2xl font-semibold">
+            <div className="flex items-center gap-1 text-xl  w-[200px] md:text-2xl font-semibold">
               <span>
                 <img
                   className="w-10 rounded-full"
@@ -92,14 +92,13 @@ const Navbar = () => {
                 className="flex items-center gap-2 m-1"
               >
                 {user.photoURL ? (
-                  <img
-                    className="h-12 w-12 rounded-full"
-                    src={user.photoURL}
-                    alt={user.displayName || user.email || "User"}
-                    onError={(e) =>
-                      (e.target.src = "https://via.placeholder.com/48")
-                    } // Fallback if image fails to load
-                  />
+                  (
+                    <img
+                      className="h-12 w-12 rounded-full"
+                      src={user.photoURL}
+                      alt={user.displayName || user.email || "User"}
+                    />
+                  ) || "No image"
                 ) : (
                   <FaSmile className="h-10 w-10 text-white" />
                 )}

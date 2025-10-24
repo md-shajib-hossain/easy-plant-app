@@ -7,3 +7,9 @@
 .active {
   @apply border-b-2 border-green-200;
 }
+
+.boxShadow {
+  border: "0 0 15px 5px rgba(34, 197, 94, 0.6)";
+}
+/* 'glow-green': '0 0 15px 5px rgba(34, 197, 94, 0.6)' */
+/* 'glow-blue': '0 0 15px 5px rgba(59, 130, 246, 0.6)', // Blue glow (example) */
