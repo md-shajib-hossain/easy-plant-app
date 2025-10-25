@@ -3,13 +3,15 @@ import { Link, useNavigate } from "react-router";
 
 import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
+import Loader from "../components/Loader";
 
 const Registration = () => {
   const [checkPass, setCeckPass] = useState("");
   const {
     createUserWithEP,
     setLoading,
+    loading,
     setUser,
     createUserWithGoogle,
     updateUser,
@@ -26,6 +28,9 @@ const Registration = () => {
     setCeckPass(password);
     console.log(checkPass);
     const passRegEx = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if (loading) {
+      return <Loader></Loader>;
+    }
     if (password)
       if (!passRegEx.test(password)) {
         toast.error(
@@ -39,7 +44,7 @@ const Registration = () => {
     createUserWithEP(email, password)
       .then((result) => {
         const user = result.user;
-        setLoading(false);
+        // setLoading(false);
 
         updateUser({
           displayName: name,
@@ -83,12 +88,15 @@ const Registration = () => {
   //
   const handleGoogleSignIn = (e) => {
     e.preventDefault();
+    if (loading) {
+      return <Loader />;
+    }
     createUserWithGoogle()
       .then((res) => {
         setUser(res.user);
         navigate(`${location.state ? location.state : "/"}`);
         toast.success("Sign In Successfully");
-        setLoading(false);
+        // setLoading(false);
       })
       .catch((error) => {
         toast.error(error.meesage);

@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import usePlantsData from "../hook/usePlantData";
 import { Link } from "react-router";
 import PLantOfWeek from "./PLantOfWeek";
+import Loader from "../components/Loader";
+import { AuthContext } from "../Context/AuthContext";
 
 const PlantCard = () => {
-  const { allData, loading, error } = usePlantsData();
+  const { allData, error } = usePlantsData();
+  const { loading } = use(AuthContext);
 
   const [selectedPlant, setSelectedPlant] = useState(null);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <Loader />;
   }
   if (error) {
     return <p>Error: Plants not found!</p>;
@@ -21,7 +24,7 @@ const PlantCard = () => {
   return (
     <section className="h-full mx-auto grid grid-cols-1 md:grid-cols-9 md:gap-2">
       <div className="mb-8 col-span-1 md:col-span-2  w-full mx-auto">
-        <h1 className="text-xl font-semibold py-2 mb-4 text-center rounded-l-md bg-[#224229] text-white">
+        <h1 className="text-xl font-semibold py-2 mb-4 text-center rounded-md md:rounded-l-md bg-[#224229] text-white">
           Top Categories
         </h1>
         <div className="flex flex-col ">
@@ -29,7 +32,7 @@ const PlantCard = () => {
             <div
               key={category}
               onClick={() => setSelectedPlant(category)}
-              className={`border border-base-300 rounded-l-md px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
+              className={`border border-base-300 rounded-md md:rounded-l-md px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
                 selectedPlant === category ? "bg-[#224229] text-white" : ""
               }`}
             >
@@ -38,7 +41,7 @@ const PlantCard = () => {
           ))}
           <div
             onClick={() => setSelectedPlant(null)}
-            className={`border border-base-300 rounded-l-md px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
+            className={`border border-base-300 rounded-md md:rounded-l-md px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
               selectedPlant === null ? "bg-[#224229] text-white" : ""
             }`}
           >

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 const ResetPassword = () => {
   const emailRef = useRef();
+
   const handleForgetPass = (e) => {
     e.preventDefault();
     const email = emailRef.current.value;
@@ -13,6 +14,7 @@ const ResetPassword = () => {
       .then(() => {
         toast.success("Password reset email sent!");
         // ..
+        window.location = "https://workspace.google.com/gmail/";
         e.target.reset();
       })
       .catch((error) => {

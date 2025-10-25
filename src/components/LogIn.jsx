@@ -4,16 +4,20 @@ import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import Loader from "../components/Loader";
 
 const LogIn = () => {
   const [showPass, setShowPass] = useState(false);
   const [checkPass, setCheckPass] = useState("");
   const emailRef = useRef();
-  const { loginWithEP, setUser, setLoading, createUserWithGoogle } =
+  const { loginWithEP, setUser, loading, setLoading, createUserWithGoogle } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
+  if (loading) {
+    return <Loader />;
+  }
   // log in func
   //
   const handleLogIn = (e) => {
@@ -47,13 +51,15 @@ const LogIn = () => {
   //
   const handleGoogleSignIn = (e) => {
     e.preventDefault();
-
+    if (loading) {
+      return <Loader />;
+    }
     createUserWithGoogle()
       .then((res) => {
         setUser(res.user);
         navigate(`${location.state ? location.state : "/"}`);
         toast.success("Sign In Successfully");
-        setLoading(false);
+        // setLoading(false);
       })
       .catch((error) => {
         toast.error(error.meesage);

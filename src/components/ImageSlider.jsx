@@ -61,7 +61,7 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <div className="relative w-full h-[80vh] overflow-hidden rounded-2xl shadow-lg">
+    <div className="relative w-full h-[60%] md:h-[80vh] overflow-hidden rounded-2xl shadow-lg">
       <AnimatePresence mode="wait">
         <motion.img
           key={images[index].img}
@@ -82,11 +82,11 @@ export default function HeroSlider() {
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-6xl font-bold mb-4 text-center drop-shadow-lg"
+          className="text-2xl md:text-6xl font-bold mb-4 text-center drop-shadow-lg"
         >
           {images[index].title}
         </motion.h1>
-        <p className="text-lg md:text-2xl mb-6 drop-shadow-md">
+        <p className="text-sm md:text-2xl mb-6 drop-shadow-md">
           {images[index].subtitle}
         </p>
       </div>

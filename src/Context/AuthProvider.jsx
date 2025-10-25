@@ -24,26 +24,22 @@ const AuthProvider = ({ children }) => {
   };
   // Create account with Google
   const createUserWithGoogle = () => {
-    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // update profile func
   const updateUser = (updatedData) => {
-    // setLoading(true);
     return updateProfile(auth.currentUser, updatedData);
   };
 
   //   log in existing account
 
   const loginWithEP = (email, password) => {
-    // setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   //   log out
   const logOut = () => {
-    // setLoading(true);
     return signOut(auth);
   };
   // on Auth State Changed Observer
