@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router";
 
 import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader2Icon } from "lucide-react";
 import Loader from "../components/Loader";
 
 const Registration = () => {
@@ -17,8 +17,14 @@ const Registration = () => {
     updateUser,
   } = use(AuthContext);
   const [showPass, setShowPass] = useState(false);
-
+  console.log(loading);
   const navigate = useNavigate();
+
+  //
+  if (loading) {
+    return <Loader></Loader>;
+  }
+  //
   const handleRegister = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -26,11 +32,9 @@ const Registration = () => {
     const photo = e.target.photo.value;
     const password = e.target.password.value;
     setCeckPass(password);
-    console.log(checkPass);
+    // console.log(checkPass);
     const passRegEx = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
-    if (loading) {
-      return <Loader></Loader>;
-    }
+
     if (password)
       if (!passRegEx.test(password)) {
         toast.error(
@@ -45,21 +49,21 @@ const Registration = () => {
       .then((result) => {
         const user = result.user;
         // setLoading(false);
-
+        navigate("/");
         updateUser({
           displayName: name,
           photoURL: photo,
         })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
+
+            toast.success("Registered Successful");
           })
           .catch((error) => {
             toast(error.message);
 
             setUser(user);
           });
-        toast.success("Registered Successful");
-        navigate("/");
       })
       .catch((e) => {
         if (e.code === "auth/email-already-in-use") {
@@ -88,12 +92,13 @@ const Registration = () => {
   //
   const handleGoogleSignIn = (e) => {
     e.preventDefault();
-    if (loading) {
-      return <Loader />;
-    }
+    // if (loading) {
+    //   return <Loader />;
+    // }
     createUserWithGoogle()
       .then((res) => {
-        setUser(res.user);
+        // setUser(res.user);
+
         navigate(`${location.state ? location.state : "/"}`);
         toast.success("Sign In Successfully");
         // setLoading(false);

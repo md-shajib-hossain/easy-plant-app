@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import usePlantsData from "../hook/usePlantData";
 import { Link } from "react-router";
 import PLantOfWeek from "./PLantOfWeek";
@@ -6,8 +6,8 @@ import Loader from "../components/Loader";
 import { AuthContext } from "../Context/AuthContext";
 
 const PlantCard = () => {
-  const { allData, error } = usePlantsData();
-  const { loading } = use(AuthContext);
+  const { allData, error, loading } = usePlantsData();
+  // const { loading } = use(AuthContext);
 
   const [selectedPlant, setSelectedPlant] = useState(null);
 

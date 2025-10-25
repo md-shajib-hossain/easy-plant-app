@@ -12,6 +12,10 @@ import {
 import { auth } from "../Firebase/firebase.config";
 
 const googleProvider = new GoogleAuthProvider();
+
+/* loading delay effect */
+
+//
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,10 +24,12 @@ const AuthProvider = ({ children }) => {
 
   // Create account with Email and Passwor
   const createUserWithEP = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   // Create account with Google
   const createUserWithGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
@@ -66,8 +72,11 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUser,
   };
+  console.log(loading);
 
-  return <AuthContext value={authInfo}>{children} </AuthContext>;
+  return (
+    <AuthContext.Provider value={authInfo}>{children} </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

@@ -61,7 +61,7 @@ export default function HeroSlider() {
   }, []);
 
   return (
-    <div className="relative w-full h-[60%] md:h-[80vh] overflow-hidden rounded-2xl shadow-lg">
+    <div className="relative w-full h-[240px] md:h-[80vh] overflow-hidden rounded-2xl shadow-lg">
       <AnimatePresence mode="wait">
         <motion.img
           key={images[index].img}

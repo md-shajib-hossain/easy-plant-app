@@ -14,7 +14,7 @@ const ResetPassword = () => {
       .then(() => {
         toast.success("Password reset email sent!");
         // ..
-        window.location = "https://workspace.google.com/gmail/";
+        window.location = "https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox";
         e.target.reset();
       })
       .catch((error) => {
