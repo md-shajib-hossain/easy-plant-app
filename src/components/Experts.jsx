@@ -2,7 +2,7 @@ import React from "react";
 
 const Experts = () => {
   return (
-    <div className="space-y-2 shadow-md rounded-lg grid grid-cols-1 md:grid-cols-5 gap-5 mb-10">
+    <div className="space-y-2 border-2 border-base-300 shadow-lg rounded-lg grid grid-cols-1 md:grid-cols-5 gap-5 mb-10">
       <div className="flex flex-col items-center justify-center">
         <h1 className="text-lg font-semibold py-2 mb-1 px-2 rounded-md text-[#224229]">
           Meet Our Experts

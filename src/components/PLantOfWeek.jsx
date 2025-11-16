@@ -2,7 +2,7 @@ import React from "react";
 
 const PLantOfWeek = () => {
   return (
-    <div className="space-y-2 rounded-lg  grid grid-cols-3 gap-10 border border-gray-200 shadow-sm">
+    <div className="space-y-2 rounded-lg  grid grid-cols-1 md:grid-cols-3 gap-10 border border-gray-200 shadow-sm">
       <div className=" flex flex-col items-center justify-center ">
         <h1 className="text-lg  font-semibold py-2 px-2 rounded-md text-center text-[#224229]">
           Plant of the Week

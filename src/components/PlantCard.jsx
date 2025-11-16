@@ -34,11 +34,11 @@ const PlantCard = () => {
             <div
               key={category}
               onClick={() => setSelectedPlant(category)}
-              className={` border border-base-300 h-[180px] w-[180px] rounded-full px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
+              className={` border-5 border-base-300 h-[180px] w-[180px] rounded-full px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
                 selectedPlant === category ? "bg-[#224229] text-white" : ""
               }`}
             >
-              <div className="flex mt-10 b/order flex-col justify-center items-center relative ">
+              <div className="flex mt-10 flex-col justify-center items-center relative ">
                 <p>
                   <TbPlant2 size={50} />
                 </p>
@@ -52,7 +52,7 @@ const PlantCard = () => {
               selectedPlant === null ? "bg-[#224229] text-white" : ""
             }`}
           >
-            <div className="flex mt-10 b/order flex-col justify-center items-center relative ">
+            <div className="flex mt-10  flex-col justify-center items-center relative ">
               <p>
                 <RiPlantFill size={64} />
               </p>
@@ -62,17 +62,17 @@ const PlantCard = () => {
         </div>
       </div>
 
-      <section className="h-full mx-auto gr/id grid-co/ls-1 md:grid-c/ols-9 md:gap-2">
-        <section className="col-sp.an-7  ">
-          <div className="gap-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <section className="h-full mx-auto  md:gap-2">
+        <section className="border-2 border-base-300 rounded-lg shadow-md">
+          <div className="gap-5 p-5 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4">
             {filteredPlants.map((plant) => (
               <div
                 key={plant.plantId}
-                className="card h-[400px] w-full bg-base-100 shadow-sm transform transition-transform duration-300 hover:scale-103"
+                className="card border-base-200 h-[400px] w-full bg-base-100 shadow-lg transform transition-transform duration-300 hover:scale-103"
               >
                 <figure>
                   <img
-                    className="w-[300px] h-[300px] px-5 "
+                    className="w-full object-cover  h-[300px] px-5 "
                     src={plant.image}
                     alt={plant.plantName}
                   />

@@ -23,12 +23,14 @@ const Home = () => {
         <div className=" ">
           <PlantCard></PlantCard>
         </div>
-        <div className="grid grid-cols-2 gap-10 my-10 ">
+        <div className="grid grid-cols-2 md:grid-cols-12  gap-10 my-10 ">
           {/* Plant of week */}
-          <div>
+          <div className="md:col-span-8 col-span-6">
             <PLantOfWeek></PLantOfWeek>
           </div>
-          <AsideBar></AsideBar>
+          <div className="md:col-span-4 col-span-6 h-full">
+            <AsideBar></AsideBar>
+          </div>
         </div>
         <Experts></Experts>
       </main>
