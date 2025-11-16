@@ -3,7 +3,7 @@ import Experts from "./Experts";
 
 const AsideBar = () => {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 border border-gray-200 rounded-lg shadow-sm">
       <h1 className="text-xl font-semibold py-2 mb-1 px-2 text-center rounded-md bg-[#224229] text-white">
         Planting Tips
       </h1>
@@ -47,7 +47,6 @@ const AsideBar = () => {
           </div>
         </div>
       </section>
-      <Experts></Experts>
     </div>
   );
 };

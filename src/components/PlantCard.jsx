@@ -3,6 +3,8 @@ import usePlantsData from "../hook/usePlantData";
 import { Link } from "react-router";
 import PLantOfWeek from "./PLantOfWeek";
 import Loader from "../components/Loader";
+import { RiPlantFill } from "react-icons/ri";
+import { TbPlant2 } from "react-icons/tb";
 import { AuthContext } from "../Context/AuthContext";
 
 const PlantCard = () => {
@@ -22,75 +24,82 @@ const PlantCard = () => {
     ? allData.filter((plant) => plant.category === selectedPlant)
     : allData;
   return (
-    <section className="h-full mx-auto grid grid-cols-1 md:grid-cols-9 md:gap-2">
-      <div className="mb-8 col-span-1 md:col-span-2  w-full mx-auto">
+    <>
+      <div className="mb-10 border-2 border-gray-200 rounded-lg shadow-emerald-700  w-full mx-auto">
         <h1 className="text-xl font-semibold py-2 mb-4 text-center rounded-md md:rounded-l-md bg-[#224229] text-white">
           Top Categories
         </h1>
-        <div className="flex flex-col ">
+        <div className="flex flex-col md:flex-row items-center justify-around ">
           {uniqueCategories.map((category) => (
             <div
               key={category}
               onClick={() => setSelectedPlant(category)}
-              className={`border border-base-300 rounded-md md:rounded-l-md px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
+              className={` border border-base-300 h-[180px] w-[180px] rounded-full px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
                 selectedPlant === category ? "bg-[#224229] text-white" : ""
               }`}
             >
-              <h1 className="text-lg">{category}</h1>
+              <div className="flex mt-10 b/order flex-col justify-center items-center relative ">
+                <p>
+                  <TbPlant2 size={50} />
+                </p>
+                <h1 className="text-lg ">{category}</h1>
+              </div>
             </div>
           ))}
           <div
             onClick={() => setSelectedPlant(null)}
-            className={`border border-base-300 rounded-md md:rounded-l-md px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
+            className={`border border-base-300 rounded-full h-[200px] w-[200px]  px-3 py-2 mb-2 cursor-pointer transform transition-transform duration-300 hover:scale-105 ${
               selectedPlant === null ? "bg-[#224229] text-white" : ""
             }`}
           >
-            <h1 className="text-lg">All Plants</h1>
-          </div>
-
-          {/* Plant of week */}
-          <div>
-            <PLantOfWeek></PLantOfWeek>
+            <div className="flex mt-10 b/order flex-col justify-center items-center relative ">
+              <p>
+                <RiPlantFill size={64} />
+              </p>
+              <h1 className="text-lg">All Plants</h1>
+            </div>
           </div>
         </div>
       </div>
 
-      <section className="col-span-7  ">
-        <div className="gap-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {filteredPlants.map((plant) => (
-            <div
-              key={plant.plantId}
-              className="card h-[400px] w-full bg-base-100 shadow-sm transform transition-transform duration-300 hover:scale-103"
-            >
-              <figure>
-                <img
-                  className="w-[300px] h-[300px] px-5 "
-                  src={plant.image}
-                  alt={plant.plantName}
-                />
-              </figure>
-              <div className="card-body">
-                <h2 className="card-title text-md">
-                  {plant.plantName}
-                  <div className="badge badge-primary">{plant.rating}</div>
-                </h2>
-                <p className="line-clamp-3 text-sm">{plant.description} </p>
-                <div className="card-actions justify-between">
-                  <div className="btn btn-outline btn-primary text-md font-semibold">
-                    ${plant.price}
-                  </div>
-                  <Link to={`/plantsdetails/${plant.plantId}`}>
-                    <div className="btn btn-soft btn-success text-md font-semibold">
-                      View Details
+      <section className="h-full mx-auto gr/id grid-co/ls-1 md:grid-c/ols-9 md:gap-2">
+        <section className="col-sp.an-7  ">
+          <div className="gap-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {filteredPlants.map((plant) => (
+              <div
+                key={plant.plantId}
+                className="card h-[400px] w-full bg-base-100 shadow-sm transform transition-transform duration-300 hover:scale-103"
+              >
+                <figure>
+                  <img
+                    className="w-[300px] h-[300px] px-5 "
+                    src={plant.image}
+                    alt={plant.plantName}
+                  />
+                </figure>
+                <div className="card-body">
+                  <h2 className="card-title text-md">
+                    {plant.plantName}
+                    <div className="badge badge-primary">{plant.rating}</div>
+                  </h2>
+                  <p className="line-clamp-3 text-sm">{plant.description} </p>
+                  <div className="card-actions justify-between">
+                    <div className="btn btn-outline btn-primary text-md font-semibold">
+                      ${plant.price}
                     </div>
-                  </Link>
+                    <Link to={`/plantsdetails/${plant.plantId}`}>
+                      <div className="btn btn-soft btn-success text-md font-semibold">
+                        View Details
+                      </div>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
       </section>
-    </section>
+    </>
   );
 };
 

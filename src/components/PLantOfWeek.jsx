@@ -2,11 +2,17 @@ import React from "react";
 
 const PLantOfWeek = () => {
   return (
-    <div className="space-y-2 ring-1 ring-green-200 rounded-lg shadow-2xl ring-opacity-50 ">
-      <h1 className="text-lg font-semibold py-2 mb-1 px-2 rounded-md bg-[#224229] text-white">
-        Plant of the Week
-      </h1>
-      <div className="card bg-base-100 shadow-sm ">
+    <div className="space-y-2 rounded-lg  grid grid-cols-3 gap-10 border border-gray-200 shadow-sm">
+      <div className=" flex flex-col items-center justify-center ">
+        <h1 className="text-lg  font-semibold py-2 px-2 rounded-md text-center text-[#224229]">
+          Plant of the Week
+        </h1>
+        <button className="btn rounded-lg text-white bg-[#224229]">
+          {" "}
+          Explore All Plants
+        </button>
+      </div>
+      <div className="card h-full p-2 shadow-sm ">
         <figure>
           <img
             src="https://www.gardenersdream.co.uk/cdn/shop/articles/Snake_Plant_1_f6204179-d92b-40e3-bec7-0d3a61e93b81.jpg?v=1744013002"
@@ -31,7 +37,7 @@ const PLantOfWeek = () => {
         </div>
       </div>
       {/*  2*/}
-      <div className="card bg-base-100 shadow-sm">
+      <div className="card p-2 shadow-sm">
         <figure>
           <img
             src="https://www.southernliving.com/thmb/Spd7_4JdKb3e0ObSF0nDlYlTYU8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-823655632-85c0768e6cb74bfcad51021a7ed92d5b.jpg"
