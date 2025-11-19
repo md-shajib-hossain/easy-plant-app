@@ -1,4 +1,3 @@
-<img src="https://raw.githubusercontent.com/Md-Shajib-Hossain/easy-plant-app/main/src/assets/Screenshot%202025-11-19%20113902.png" alt="Easy Plant App Preview" />
 
 # Easy Plant App – Indoor Plants Marketplace
 
